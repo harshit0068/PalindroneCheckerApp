@@ -1,40 +1,36 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
- * Use Case 6: Queue + Stack Based Palindrome Check
- * Description: Validates palindrome by comparing FIFO (Queue) and LIFO (Stack) behaviors.
+ * Use Case 7: Deque Based Optimized Palindrome Checker
+ * Description: Validates a palindrome using a Double Ended Queue (Deque).
  * @author Harshit Singh
- * @version 6.0
+ * @version 7.0
  */
 public class PalindroneCheckerApp {
     public static void main(String[] args) {
-        // Define input string [cite: 820]
-        String input = "civic";
+        // Define the input string [cite: 866, 867]
+        String input = "refer";
 
-        // Create Queue (FIFO) and Stack (LIFO) [cite: 821, 822, 823]
-        Queue<Character> queue = new LinkedList<>();
-        Stack<Character> stack = new Stack<>();
+        // Create a Deque to store characters [cite: 868, 869]
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert characters into both structures [cite: 787, 788, 824]
+        // Add each character to the deque [cite: 870, 871]
         for (char c : input.toCharArray()) {
-            queue.add(c);  // Enqueue
-            stack.push(c); // Push
+            deque.addLast(c);
         }
 
-        boolean isPalindrome = true; // [cite: 826]
+        // Flag to track palindrome result [cite: 873, 874]
+        boolean isPalindrome = true;
 
-        // Compare dequeue vs pop until queue is empty [cite: 789, 827, 828]
-        while (!queue.isEmpty()) {
-            if (queue.poll() != stack.pop()) {
-                isPalindrome = false;
-                break;
+        // Continue comparison while more than one element exists [cite: 875, 876]
+        while (deque.size() > 1) {
+            // Remove first and last characters and compare [cite: 852, 853, 854]
+            if (deque.removeFirst() != deque.removeLast()) {
+
             }
         }
 
-        // Print result [cite: 830, 831]
-        System.out.println("Input: " + input);
-        System.out.println("Is Palindrome?: " + isPalindrome);
-    }
-}
+
+        // Display results [cite: 878, 879]
