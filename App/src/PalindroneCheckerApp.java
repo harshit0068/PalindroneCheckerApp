@@ -1,35 +1,39 @@
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
-
- * Use Case 5: Stack-Based Palindrome Checker
- * Description: Validates palindrome using the LIFO behavior of a Stack.
+ * Use Case 7: Deque Based Optimized Palindrome Checker
+ * Description: Validates a palindrome using a Double Ended Queue (Deque).
  * @author Harshit Singh
- * @version 5.0
+ * @version 7.0
  */
 public class PalindroneCheckerApp {
     public static void main(String[] args) {
-        String input = "noon"; // [cite: 769]
-        Stack<Character> stack = new Stack<>(); //
+        // Define the input string [cite: 866, 867]
+        String input = "refer";
 
-        // Step 1: Push characters into stack [cite: 742, 758]
+        // Create a Deque to store characters [cite: 868, 869]
+        Deque<Character> deque = new ArrayDeque<>();
+
+        // Add each character to the deque [cite: 870, 871]
         for (char c : input.toCharArray()) {
-            stack.push(c); // [cite: 747, 773]
+            deque.addLast(c);
         }
 
-        boolean isPalindrome = true; // [cite: 774]
+        // Flag to track palindrome result [cite: 873, 874]
+        boolean isPalindrome = true;
 
-        // Step 2: Pop and compare with original sequence [cite: 743, 759, 760]
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) { // [cite: 748, 776, 777]
+        // Continue comparison while more than one element exists [cite: 875, 876]
+        while (deque.size() > 1) {
+            // Remove first and last characters and compare [cite: 852, 853, 854]
+            if (deque.removeFirst() != deque.removeLast()) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Step 3: Print result [cite: 744]
-        System.out.println("Input: " + input); // [cite: 780]
-        System.out.println("Is Palindrome?: " + isPalindrome); // [cite: 781]
-
+        // Display results [cite: 878, 879]
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome?: " + isPalindrome);
     }
 }
