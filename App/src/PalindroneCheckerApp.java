@@ -1,14 +1,33 @@
 /**
- * Use Case 1: Application Entry & Welcome Message
- * Description: Entry point for the Palindrome Checker Management System.
+ * Use Case 4: Character Array Based Palindrome Check
+ * Description: Validates palindrome using char array and two-pointer technique.
  * @author Harshit Singh
- * @version 1.0
+ * @version 4.0
  */
 public class PalindroneCheckerApp {
     public static void main(String[] args) {
-        // Display Application name and version [cite: 544, 545]
-        System.out.println("Welcome to the Palindrome Checker Management System"); [cite: 579]
-        System.out.println("Version: 1.0"); [cite: 580]
-        System.out.println("System initialized successfully."); [cite: 581]
+        // Initialize input string [cite: 707, 708]
+        String input = "radar";
+
+        // Convert string to character array [cite: 709, 710]
+        char[] chars = input.toCharArray();
+
+        // Initialize start and end pointers [cite: 711, 713]
+        int start = 0;
+        int end = chars.length - 1;
+        boolean isPalindrome = true; // [cite: 715]
+
+        // Compare characters until pointers cross [cite: 716]
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        System.out.println("Input: " + input); // [cite: 718]
+        System.out.println("Is Palindrome?: " + isPalindrome); // [cite: 719]
     }
 }
