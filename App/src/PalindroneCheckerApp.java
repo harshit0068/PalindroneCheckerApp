@@ -1,35 +1,40 @@
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
-
- * Use Case 5: Stack-Based Palindrome Checker
- * Description: Validates palindrome using the LIFO behavior of a Stack.
+ * Use Case 6: Queue + Stack Based Palindrome Check
+ * Description: Validates palindrome by comparing FIFO (Queue) and LIFO (Stack) behaviors.
  * @author Harshit Singh
- * @version 5.0
+ * @version 6.0
  */
 public class PalindroneCheckerApp {
     public static void main(String[] args) {
-        String input = "noon"; // [cite: 769]
-        Stack<Character> stack = new Stack<>(); //
+        // Define input string [cite: 820]
+        String input = "civic";
 
-        // Step 1: Push characters into stack [cite: 742, 758]
+        // Create Queue (FIFO) and Stack (LIFO) [cite: 821, 822, 823]
+        Queue<Character> queue = new LinkedList<>();
+        Stack<Character> stack = new Stack<>();
+
+        // Insert characters into both structures [cite: 787, 788, 824]
         for (char c : input.toCharArray()) {
-            stack.push(c); // [cite: 747, 773]
+            queue.add(c);  // Enqueue
+            stack.push(c); // Push
         }
 
-        boolean isPalindrome = true; // [cite: 774]
+        boolean isPalindrome = true; // [cite: 826]
 
-        // Step 2: Pop and compare with original sequence [cite: 743, 759, 760]
-        for (char c : input.toCharArray()) {
-            if (c != stack.pop()) { // [cite: 748, 776, 777]
+        // Compare dequeue vs pop until queue is empty [cite: 789, 827, 828]
+        while (!queue.isEmpty()) {
+            if (queue.poll() != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Step 3: Print result [cite: 744]
-        System.out.println("Input: " + input); // [cite: 780]
-        System.out.println("Is Palindrome?: " + isPalindrome); // [cite: 781]
-
+        // Print result [cite: 830, 831]
+        System.out.println("Input: " + input);
+        System.out.println("Is Palindrome?: " + isPalindrome);
     }
 }
