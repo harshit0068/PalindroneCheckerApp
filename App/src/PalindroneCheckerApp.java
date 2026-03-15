@@ -1,6 +1,7 @@
 import java.util.Stack;
 
 /**
+
  * Use Case 5: Stack-Based Palindrome Checker
  * Description: Validates palindrome using the LIFO behavior of a Stack.
  * @author Harshit Singh
@@ -29,5 +30,6 @@ public class PalindroneCheckerApp {
         // Step 3: Print result [cite: 744]
         System.out.println("Input: " + input); // [cite: 780]
         System.out.println("Is Palindrome?: " + isPalindrome); // [cite: 781]
+
     }
 }
