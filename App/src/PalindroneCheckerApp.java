@@ -1,3 +1,4 @@
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -27,13 +28,9 @@ public class PalindroneCheckerApp {
         while (deque.size() > 1) {
             // Remove first and last characters and compare [cite: 852, 853, 854]
             if (deque.removeFirst() != deque.removeLast()) {
-                isPalindrome = false;
-                break;
+
             }
         }
 
+
         // Display results [cite: 878, 879]
-        System.out.println("Input: " + input);
-        System.out.println("Is Palindrome?: " + isPalindrome);
-    }
-}
