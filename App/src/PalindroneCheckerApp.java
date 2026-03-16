@@ -1,38 +1,35 @@
-import java.util.LinkedList;
-
 /**
- * Use Case 8: Linked List Based Palindrome Checker
- * Description: Validates palindrome using LinkedList double-ended operations.
+ * Use Case 9: Recursive Palindrome Checker
+ * Description: Validates palindrome using recursion and the method call stack. [cite: 270, 272]
  * @author Harshit Singh
- * @version 8.0
+ * @version 9.0 [cite: 280]
  */
 public class PalindroneCheckerApp {
     public static void main(String[] args) {
-        // Define the input string [cite: 243, 244]
-        String input = "level";
+        String input = "madam"; // [cite: 296]
 
-        // Create a LinkedList to store characters [cite: 245, 246]
-        LinkedList<Character> list = new LinkedList<>();
+        // Initial call to recursive method [cite: 284]
+        boolean isPalindrome = check(input, 0, input.length() - 1);
 
-        // Add each character to the linked list [cite: 247, 248]
-        for (char c : input.toCharArray()) {
-            list.add(c);
+        System.out.println("Input: " + input); // [cite: 296]
+        System.out.println("Is Palindrome?: " + isPalindrome); // [cite: 297]
+    }
+
+    /**
+     * Recursive method to compare characters moving inward.
+     */
+    private static boolean check(String s, int start, int end) {
+        // Base Condition: If pointers cross, all characters matched [cite: 262, 265, 274]
+        if (start >= end) {
+            return true;
         }
 
-        // Flag to track palindrome state [cite: 250, 251]
-        boolean isPalindrome = true;
-
-        // Compare until only one or zero elements remain [cite: 252, 253]
-        while (list.size() > 1) {
-            // Remove from both ends and compare [cite: 228, 229, 230]
-            if (!list.removeFirst().equals(list.removeLast())) {
-                isPalindrome = false;
-                break;
-            }
+        // Check if characters at current positions match [cite: 273]
+        if (s.charAt(start) != s.charAt(end)) {
+            return false; // Mismatch found [cite: 276]
         }
 
-        // Display the results [cite: 254, 255, 256]
-        System.out.println("Input: " + input);
-        System.out.println("Is Palindrome?: " + isPalindrome);
+        // Recursive call for the inner substring [cite: 261, 264]
+        return check(s, start + 1, end - 1);
     }
 }
