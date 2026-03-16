@@ -1,51 +1,50 @@
 import java.util.Stack;
 
 /**
- * Use Case 12: Strategy Pattern for Palindrome Algorithms
- * Description: Dynamically selects algorithms at runtime using the Strategy Design Pattern.
+ * Use Case 13: Performance Comparison
+ * Description: Measures and compares execution duration of algorithms[cite: 451, 453].
  * @author Harshit Singh
- * @version 12.0
+ * @version 13.0
  */
 public class PalindroneCheckerApp {
     public static void main(String[] args) {
-        String input = "Level".toLowerCase(); // Normalizing for case sensitivity [cite: 436]
+        String input = "Level".toLowerCase(); // [cite: 468]
 
-        // Injecting the Stack-based strategy at runtime
+        // Using the Strategy Pattern from UC12
         PalindromeStrategy strategy = new StackStrategy();
 
-        // Execute the selected algorithm
+        // Capture start time in nanoseconds
+        long startTime = System.nanoTime();
+
+        // Execute the algorithm [cite: 443]
         boolean isPalindrome = strategy.check(input);
 
-        System.out.println("Input: " + input); [cite: 436]
-        System.out.println("Is Palindrome?: " + isPalindrome); [cite: 437]
+        // Capture end time [cite: 456]
+        long endTime = System.nanoTime();
+
+        // Calculate total duration
+        long duration = endTime - startTime;
+
+        System.out.println("Input: " + input); // [cite: 468]
+        System.out.println("Is Palindrome?: " + isPalindrome); // [cite: 469]
+        System.out.println("Execution Time: " + duration + " ns"); // [cite: 470]
     }
 }
 
-/**
- * Interface defining a contract for all palindrome checking algorithms.
- */
+// Reusing the interface and strategy from UC12
 interface PalindromeStrategy {
-    boolean check(String input); [cite: 386, 416]
+    boolean check(String input);
 }
 
-/**
- * Concrete strategy implementing Stack-based palindrome validation.
- */
 class StackStrategy implements PalindromeStrategy {
     @Override
     public boolean check(String input) {
-        Stack<Character> stack = new Stack<>(); [cite: 430]
-
-        // Push characters onto stack [cite: 432]
+        Stack<Character> stack = new Stack<>();
         for (char c : input.toCharArray()) {
             stack.push(c);
         }
-
-        // Compare by popping from stack [cite: 434]
         for (char c : input.toCharArray()) {
-            if (c != stack.pop()) {
-                return false;
-            }
+            if (c != stack.pop()) return false;
         }
         return true;
     }
