@@ -1,35 +1,30 @@
 /**
- * Use Case 9: Recursive Palindrome Checker
- * Description: Validates palindrome using recursion and the method call stack. [cite: 270, 272]
+ * Use Case 10: Case-Insensitive & Space-Ignored Palindrome
+ * Description: Validates palindrome after removing spaces and normalizing case. [cite: 311, 313]
  * @author Harshit Singh
- * @version 9.0 [cite: 280]
+ * @version 10.0 [cite: 321]
  */
 public class PalindroneCheckerApp {
     public static void main(String[] args) {
-        String input = "madam"; // [cite: 296]
+        // Example input with mixed case and spaces [cite: 319, 336]
+        String input = "A man a plan a canal Panama";
 
-        // Initial call to recursive method [cite: 284]
-        boolean isPalindrome = check(input, 0, input.length() - 1);
+        // Step 1: Normalize - Remove spaces/symbols and convert to lowercase [cite: 314, 315, 316]
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase(); [cite: 306]
 
-        System.out.println("Input: " + input); // [cite: 296]
-        System.out.println("Is Palindrome?: " + isPalindrome); // [cite: 297]
-    }
+        boolean isPalindrome = true; [cite: 329]
 
-    /**
-     * Recursive method to compare characters moving inward.
-     */
-    private static boolean check(String s, int start, int end) {
-        // Base Condition: If pointers cross, all characters matched [cite: 262, 265, 274]
-        if (start >= end) {
-            return true;
+        // Step 2: Symmetric Comparison [cite: 332]
+        for (int i = 0; i < normalized.length() / 2; i++) { [cite: 330]
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) { [cite: 333]
+                isPalindrome = false;
+                break;
+            }
         }
 
-        // Check if characters at current positions match [cite: 273]
-        if (s.charAt(start) != s.charAt(end)) {
-            return false; // Mismatch found [cite: 276]
-        }
-
-        // Recursive call for the inner substring [cite: 261, 264]
-        return check(s, start + 1, end - 1);
+        // Step 3: Display results [cite: 335]
+        System.out.println("Input: " + input); [cite: 336]
+        System.out.println("Normalized: " + normalized);
+        System.out.println("Is Palindrome?: " + isPalindrome); [cite: 337]
     }
 }
