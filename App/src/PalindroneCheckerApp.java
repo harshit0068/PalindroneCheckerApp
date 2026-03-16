@@ -1,43 +1,51 @@
+import java.util.Stack;
+
 /**
- * Use Case 11: Object-Oriented Palindrome Service
- * Description: Demonstrates encapsulation by moving logic to a Service class.
+ * Use Case 12: Strategy Pattern for Palindrome Algorithms
+ * Description: Dynamically selects algorithms at runtime using the Strategy Design Pattern.
  * @author Harshit Singh
- * @version 11.0
+ * @version 12.0
  */
 public class PalindroneCheckerApp {
     public static void main(String[] args) {
-        String input = "racecar"; // [cite: 379]
+        String input = "Level".toLowerCase(); // Normalizing for case sensitivity [cite: 436]
 
-        // Instantiate the service object
-        PalindromeService service = new PalindromeService();
+        // Injecting the Stack-based strategy at runtime
+        PalindromeStrategy strategy = new StackStrategy();
 
-        // Use the service to check the palindrome
-        boolean isPalindrome = service.checkPalindrome(input);
+        // Execute the selected algorithm
+        boolean isPalindrome = strategy.check(input);
 
-        System.out.println("Input: " + input); // [cite: 379]
-        System.out.println("Is Palindrome?: " + isPalindrome); // [cite: 380]
+        System.out.println("Input: " + input); [cite: 436]
+        System.out.println("Is Palindrome?: " + isPalindrome); [cite: 437]
     }
 }
 
 /**
- * Service class that contains encapsulated palindrome logic.
+ * Interface defining a contract for all palindrome checking algorithms.
  */
-class PalindromeService {
-    /**
-     * Checks whether the input string is a palindrome.
-     * @param input The string to check
-     * @return true if palindrome, false otherwise
-     */
-    public boolean checkPalindrome(String input) {
-        int start = 0; // [cite: 373]
-        int end = input.length() - 1; // [cite: 375]
+interface PalindromeStrategy {
+    boolean check(String input); [cite: 386, 416]
+}
 
-        while (start < end) { // [cite: 376]
-            if (input.charAt(start) != input.charAt(end)) {
+/**
+ * Concrete strategy implementing Stack-based palindrome validation.
+ */
+class StackStrategy implements PalindromeStrategy {
+    @Override
+    public boolean check(String input) {
+        Stack<Character> stack = new Stack<>(); [cite: 430]
+
+        // Push characters onto stack [cite: 432]
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
+
+        // Compare by popping from stack [cite: 434]
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 return false;
             }
-            start++;
-            end--;
         }
         return true;
     }
